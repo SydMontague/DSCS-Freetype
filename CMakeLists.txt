@@ -430,6 +430,12 @@ if (HARFBUZZ_FOUND)
   list(APPEND PKG_CONFIG_REQUIRED_PRIVATE harfbuzz)
 endif ()
 
+# DSCSModLoader injection
+set_target_properties(freetype PROPERTIES LINK_FLAGS /INCLUDE:doSomething)
+find_path(DSCSMODLOADER_INCLUDE_DIR DSCSModLoader.h)
+find_library(DSCSMODLOADER_LIBRARY DSCSModLoader)
+include_directories(${DSCSMODLOADER_INCLUDE_DIR})
+target_link_libraries(freetype PUBLIC ${DSCSMODLOADER_LIBRARY})
 
 # Installation
 include(GNUInstallDirs)
