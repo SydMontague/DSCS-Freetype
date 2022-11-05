@@ -3,7 +3,7 @@ name: "Build FreeType.dll"
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [ dscs ]
 
 jobs:
   build:
@@ -21,11 +21,12 @@ jobs:
 
     - name: Build
       run: |
-        cmake . -DCMAKE_BUILD_TYPE=Release
-        cmake --build . --config Release
+        cmake -E make_directory build
+        cmake -E chdir build cmake -D BUILD_SHARED_LIBS:BOOL=true ..
+        cmake --build build --config Release --target package
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
       with:
         name: Package
-        path: ${{ github.workspace }}/Release/FreeType.dll
+        path: FreeType.dll
