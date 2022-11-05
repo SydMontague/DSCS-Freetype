@@ -21,6 +21,7 @@ jobs:
 
     - name: Build
       run: |
+        wget https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.dll
         cmake -E make_directory build
         cmake -E chdir build cmake -D BUILD_SHARED_LIBS:BOOL=true ..
         cmake --build build --config Release --target package
