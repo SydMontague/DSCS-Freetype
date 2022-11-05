@@ -1,0 +1,31 @@
+name: "Build FreeType.dll"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup MSVC
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: x64
+        vsversion: 2022
+
+    - name: Build
+      run: |
+        cmake . -DCMAKE_BUILD_TYPE=Release
+        cmake --build . --config Release
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.2
+      with:
+        name: Package
+        path: ${{ github.workspace }}/Release/FreeType.dll
