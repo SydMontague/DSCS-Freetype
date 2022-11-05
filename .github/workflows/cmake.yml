@@ -3,7 +3,7 @@ name: "Build FreeType.dll"
 on:
   workflow_dispatch:
   push:
-    branches: [ dscs ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -29,4 +29,4 @@ jobs:
       uses: actions/upload-artifact@v2.2.2
       with:
         name: Package
-        path: FreeType.dll
+        path: ${{ github.workspace }}/build/Release
