@@ -85,7 +85,7 @@
 # FreeType explicitly marks the API to be exported and relies on the compiler
 # to hide all other symbols. CMake supports a C_VISBILITY_PRESET property
 # starting with 2.8.12.
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 2.8.12)
 
 if (NOT CMAKE_VERSION VERSION_LESS 3.3)
   # Allow symbol visibility settings also on static libraries. CMake < 3.3
@@ -431,10 +431,11 @@ if (HARFBUZZ_FOUND)
 endif ()
 
 # DSCSModLoader injection
-add_library(DSCSModLoader INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/dscs/DSCSModLoader.dll")
-target_link_libraries(freetype INTERFACE DSCSModLoader)
-target_link_options(freetype INTERFACE "/OPT:NOREF")
-target_link_options(DSCSModLoader INTERFACE "/OPT:NOREF")
+set_target_properties(freetype PROPERTIES LINK_FLAGS /INCLUDE:doSomething)
+find_path(DSCSMODLOADER_INCLUDE_DIR DSCSModLoader.h)
+find_library(DSCSMODLOADER_LIBRARY DSCSModLoader)
+include_directories(${DSCSMODLOADER_INCLUDE_DIR})
+target_link_libraries(freetype PUBLIC ${DSCSMODLOADER_LIBRARY})
 
 # Installation
 include(GNUInstallDirs)

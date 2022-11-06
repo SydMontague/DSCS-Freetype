@@ -11,7 +11,15 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        repository: 'SydMontague/DSCSModLoader'
+        path: "DSCSModLoader"
+
+
 
     - name: Setup MSVC
       uses: ilammy/msvc-dev-cmd@v1
@@ -21,9 +29,10 @@ jobs:
 
     - name: Build
       run: |
-        mkdir dscs
-        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.dll -o dscs/DSCSModLoader.dll
-        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.h -o dscs/DSCSModLoader.h
+        cd DSCSModLoader
+        cmake . -DCMAKE_BUILD_TYPE=Release
+        cmake --build . --config Release
+        cd ..
         cmake -E make_directory build
         cmake -E chdir build cmake -D BUILD_SHARED_LIBS:BOOL=true ..
         cmake --build build --config Release --target package
