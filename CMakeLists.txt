@@ -432,8 +432,9 @@ endif ()
 
 # DSCSModLoader injection
 add_library(DSCSModLoader INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/dscs/DSCSModLoader.dll")
-target_link_libraries(freetype PUBLIC DSCSModLoader)
+target_link_libraries(freetype INTERFACE DSCSModLoader)
 target_link_options(freetype INTERFACE "/OPT:NOREF")
+target_link_options(DSCSModLoader INTERFACE "/OPT:NOREF")
 
 # Installation
 include(GNUInstallDirs)
