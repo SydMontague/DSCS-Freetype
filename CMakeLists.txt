@@ -432,11 +432,11 @@ endif ()
 
 # DSCSModLoader injection
 
-add_library (DSCSModLoader SHARED "dscs/DSCSModLoader.cpp" "dscs/DSCSModLoader.h")
-set_target_properties(DSCSModLoader PROPERTIES LINKER_LANGUAGE CXX)
-include_directories("dscs")
+add_library (DSCSModLoader SHARED IMPORTED)
+set_property(TARGET DSCSModLoader PROPERTY IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/dscs/DSCSModLoader.lib)
+include_directories(${PROJECT_SOURCE_DIR}/dscs/)
 set_target_properties(freetype PROPERTIES LINK_FLAGS /INCLUDE:doSomething)
-target_link_libraries(freetype PUBLIC DSCSModLoader)
+target_link_libraries(freetype PUBLIC ${PROJECT_SOURCE_DIR}/dscs/DSCSModLoader.lib)
 
 # Installation
 include(GNUInstallDirs)
