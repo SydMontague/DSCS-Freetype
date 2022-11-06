@@ -432,7 +432,7 @@ endif ()
 
 # DSCSModLoader injection
 
-find_library(DSCSMODLOADER_LIB DSCSModLoader HINTS ${PROJECT_SOURCE_DIR}/dscs)
+find_library(DSCSMODLOADER_LIB DSCSModLoader HINTS ${PROJECT_SOURCE_DIR})
 
 if(DSCSMODLOADER_LIB)
 message("Hallo Welt")
