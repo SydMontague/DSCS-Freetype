@@ -13,12 +13,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        repository: 'SydMontague/DSCSModLoader'
-        path: "DSCSModLoader"
-
 
 
     - name: Setup MSVC
@@ -29,10 +23,6 @@ jobs:
 
     - name: Build
       run: |
-        cd DSCSModLoader
-        cmake . -DCMAKE_BUILD_TYPE=Release
-        cmake --build . --config Release
-        cd ..
         cmake -E make_directory build
         cmake -E chdir build cmake -D BUILD_SHARED_LIBS:BOOL=true ..
         cmake --build build --config Release --target package
