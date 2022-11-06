@@ -21,6 +21,7 @@ jobs:
 
     - name: Build
       run: |
+        mkdir dscs
         curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.dll -o dscs/DSCSModLoader.dll
         curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.h -o dscs/DSCSModLoader.h
         cmake -E make_directory build
