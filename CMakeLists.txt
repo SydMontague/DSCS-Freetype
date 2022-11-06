@@ -443,7 +443,7 @@ endif()
 
 set_target_properties(freetype PROPERTIES LINK_FLAGS /INCLUDE:doSomething)
 include_directories(${PROJECT_SOURCE_DIR}/dscs/)
-target_link_libraries(freetype PUBLIC DSCSModLoader)
+target_link_libraries(freetype PUBLIC ${DSCSMODLOADER_LIB})
 
 # Installation
 include(GNUInstallDirs)
