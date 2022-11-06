@@ -25,6 +25,7 @@ jobs:
       run: |
         curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.lib -o dscs/DSCSModLoader.lib
         curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.dll -o dscs/DSCSModLoader.dll
+        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.exp -o dscs/DSCSModLoader.exp
         curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.h -o dscs/DSCSModLoader.h
         cmake -E make_directory build
         cmake -E chdir build cmake -D BUILD_SHARED_LIBS:BOOL=true ..

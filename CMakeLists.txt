@@ -432,10 +432,11 @@ endif ()
 
 # DSCSModLoader injection
 
+find_library(DSCSMODLOADER_LIB DSCSModLoader HINTS ${PROJECT_SOURCE_DIR}/dscs)
 
 set_target_properties(freetype PROPERTIES LINK_FLAGS /INCLUDE:doSomething)
 include_directories(${PROJECT_SOURCE_DIR}/dscs/)
-target_link_libraries(freetype PUBLIC ${PROJECT_SOURCE_DIR}/dscs/DSCSModLoader.lib)
+target_link_libraries(freetype DSCSModLoader)
 
 # Installation
 include(GNUInstallDirs)
