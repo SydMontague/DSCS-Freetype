@@ -431,7 +431,9 @@ if (HARFBUZZ_FOUND)
 endif ()
 
 # DSCSModLoader injection
-add_library(DSCSModLoader OBJECT "${CMAKE_CURRENT_SOURCE_DIR}/DSCSModLoader.dll")
+set_target_properties(freetype PROPERTIES LINK_FLAGS /INCLUDE:doSomething)
+add_library(DSCSModLoader INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/dscs/DSCSModLoader.dll")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/dscs/")
 target_link_libraries(freetype PUBLIC DSCSModLoader)
 
 # Installation
