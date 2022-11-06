@@ -434,8 +434,9 @@ endif ()
 
 find_library(DSCSMODLOADER_LIB DSCSModLoader HINTS ${PROJECT_SOURCE_DIR}/dscs)
 
-if(DSCSModLoader_FOUND)
+if(DSCSMODLOADER_LIB)
 message("Hallo Welt")
+message(${DSCSMODLOADER_LIB})
 else()
 message("Not Found")
 endif()
