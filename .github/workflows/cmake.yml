@@ -23,10 +23,11 @@ jobs:
 
     - name: Build
       run: |
-        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.lib -o DSCSModLoader.lib
-        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.dll -o DSCSModLoader.dll
-        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.exp -o DSCSModLoader.exp
-        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.h -o dscs/DSCSModLoader.h
+        mkdir dscs
+        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.lib -o DSCSModLoader.lib -L
+        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.dll -o DSCSModLoader.dll -L
+        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.exp -o DSCSModLoader.exp -L
+        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.h -o dscs/DSCSModLoader.h -L
         dir
         cmake -E make_directory build
         cmake -E chdir build cmake -D BUILD_SHARED_LIBS:BOOL=true ..
