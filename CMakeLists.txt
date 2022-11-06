@@ -433,14 +433,6 @@ endif ()
 # DSCSModLoader injection
 
 find_library(DSCSMODLOADER_LIB DSCSModLoader HINTS ${PROJECT_SOURCE_DIR})
-
-if(DSCSMODLOADER_LIB)
-message("Hallo Welt")
-message(${DSCSMODLOADER_LIB})
-else()
-message("Not Found")
-endif()
-
 set_target_properties(freetype PROPERTIES LINK_FLAGS /INCLUDE:doSomething)
 include_directories(${PROJECT_SOURCE_DIR}/dscs/)
 target_link_libraries(freetype PUBLIC ${DSCSMODLOADER_LIB})
