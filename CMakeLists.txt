@@ -434,9 +434,15 @@ endif ()
 
 find_library(DSCSMODLOADER_LIB DSCSModLoader HINTS ${PROJECT_SOURCE_DIR}/dscs)
 
+if(DSCSModLoader_FOUND)
+message("Hallo Welt")
+else()
+message("Not Found")
+endif()
+
 set_target_properties(freetype PROPERTIES LINK_FLAGS /INCLUDE:doSomething)
 include_directories(${PROJECT_SOURCE_DIR}/dscs/)
-target_link_libraries(freetype DSCSModLoader)
+target_link_libraries(freetype PUBLIC DSCSModLoader)
 
 # Installation
 include(GNUInstallDirs)
