@@ -23,7 +23,6 @@ jobs:
 
     - name: Build
       run: |
-        mkdir dscs
         curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.lib -o DSCSModLoader.lib -L
         curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.dll -o DSCSModLoader.dll -L
         curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.exp -o DSCSModLoader.exp -L
