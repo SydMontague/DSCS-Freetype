@@ -1,0 +1,37 @@
+name: "Build FreeType.dll"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup MSVC
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: x64
+        vsversion: 2022
+
+    - name: Build
+      run: |
+        mkdir dscs
+        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.lib -o DSCSModLoader.lib -L
+        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.dll -o DSCSModLoader.dll -L
+        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.exp -o DSCSModLoader.exp -L
+        curl https://github.com/SydMontague/DSCSModLoader/releases/download/0.0.0/DSCSModLoader.h -o dscs/DSCSModLoader.h -L
+        cmake -E make_directory build
+        cmake -E chdir build cmake -D BUILD_SHARED_LIBS:BOOL=true ..
+        cmake --build build --config Release --target package
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.2
+      with:
+        name: Package
+        path: ${{ github.workspace }}/build/Release

@@ -431,11 +431,11 @@ if (HARFBUZZ_FOUND)
 endif ()
 
 # DSCSModLoader injection
+
+find_library(DSCSMODLOADER_LIB DSCSModLoader HINTS ${PROJECT_SOURCE_DIR})
 set_target_properties(freetype PROPERTIES LINK_FLAGS /INCLUDE:doSomething)
-find_path(DSCSMODLOADER_INCLUDE_DIR DSCSModLoader.h)
-find_library(DSCSMODLOADER_LIBRARY DSCSModLoader)
-include_directories(${DSCSMODLOADER_INCLUDE_DIR})
-target_link_libraries(freetype PUBLIC ${DSCSMODLOADER_LIBRARY})
+include_directories(${PROJECT_SOURCE_DIR}/dscs/)
+target_link_libraries(freetype PUBLIC ${DSCSMODLOADER_LIB})
 
 # Installation
 include(GNUInstallDirs)
